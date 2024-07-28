@@ -82,45 +82,49 @@ Unload Me
 End Sub
 
 
-'Private Sub txtCapital_KeyPress(ByVal KeyAscii As MSForms.ReturnInteger)
-'
-'    Dim texto As String
-'    Dim posicion As Integer
-'
-'    ' Permitir números (0-9), punto (.), coma (,) y tecla de retroceso
-'    If (KeyAscii >= 48 And KeyAscii <= 57) Or KeyAscii = 46 Or KeyAscii = 44 Or KeyAscii = 8 Then
-'        ' Obtener el texto actual del cuadro de texto
-'        texto = Me.txtCapital.text
-'
-'        ' Insertar el carácter en la posición actual del cursor
-'        If KeyAscii <> 8 Then ' Si no es la tecla de retroceso
-'            posicion = Me.txtCapital.SelStart + 1
-'            texto = Left(texto, Me.txtCapital.SelStart) & Chr(KeyAscii) & Mid(texto, Me.txtCapital.SelStart + 1)
-'        Else
-'            If Me.txtCapital.SelLength > 0 Then
-'                texto = Left(texto, Me.txtCapital.SelStart) & Mid(texto, Me.txtCapital.SelStart + Me.txtCapital.SelLength + 1)
-'            ElseIf Me.txtCapital.SelStart > 0 Then
-'                texto = Left(texto, Me.txtCapital.SelStart - 1) & Mid(texto, Me.txtCapital.SelStart + 1)
-'            End If
-'        End If
-'
-'        ' Reemplazar coma (,) por punto (.) para validación
-'       ' texto = Replace(texto, ",", ".")
-'
-'        ' Validar si el resultado es un número válido
-'        If Not IsNumeric(texto) Then
-'            'MsgBox "Por favor, introduzca un número válido.", vbExclamation
-'            KeyAscii = 0 ' Cancelar la tecla
-'        End If
-'    Else
-'        'MsgBox "Por favor, introduzca solo números, punto o coma.", vbExclamation
-'        KeyAscii = 0 ' Cancelar la tecla
-'    End If
-'
-'
-'
-'
-'End Sub
+Private Sub txtCapital_Change()
+
+End Sub
+
+Private Sub txtCapital_KeyPress(ByVal KeyAscii As MSForms.ReturnInteger)
+
+    Dim texto As String
+    Dim posicion As Integer
+
+    ' Permitir números (0-9), punto (.), coma (,) y tecla de retroceso
+    If (KeyAscii >= 48 And KeyAscii <= 57) Or KeyAscii = 46 Or KeyAscii = 44 Or KeyAscii = 8 Then
+        ' Obtener el texto actual del cuadro de texto
+        texto = Me.txtCapital.text
+
+        ' Insertar el carácter en la posición actual del cursor
+        If KeyAscii <> 8 Then ' Si no es la tecla de retroceso
+            posicion = Me.txtCapital.SelStart + 1
+            texto = Left(texto, Me.txtCapital.SelStart) & Chr(KeyAscii) & Mid(texto, Me.txtCapital.SelStart + 1)
+        Else
+            If Me.txtCapital.SelLength > 0 Then
+                texto = Left(texto, Me.txtCapital.SelStart) & Mid(texto, Me.txtCapital.SelStart + Me.txtCapital.SelLength + 1)
+            ElseIf Me.txtCapital.SelStart > 0 Then
+                texto = Left(texto, Me.txtCapital.SelStart - 1) & Mid(texto, Me.txtCapital.SelStart + 1)
+            End If
+        End If
+
+        ' Reemplazar coma (,) por punto (.) para validación
+       ' texto = Replace(texto, ",", ".")
+
+        ' Validar si el resultado es un número válido
+        If Not IsNumeric(texto) Then
+            'MsgBox "Por favor, introduzca un número válido.", vbExclamation
+            KeyAscii = 0 ' Cancelar la tecla
+        End If
+    Else
+        'MsgBox "Por favor, introduzca solo números, punto o coma.", vbExclamation
+        KeyAscii = 0 ' Cancelar la tecla
+    End If
+
+
+
+
+End Sub
 
 Private Sub UserForm_Activate()
 
