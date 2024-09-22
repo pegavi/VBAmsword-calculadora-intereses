@@ -3,7 +3,7 @@ Calculadora de intereses para MSWord, crea un tabla con distintos intereses lega
 
 ## Algunas mejoras planeadas:
 - Modificar la entrada de datos de fecha.
-  - ¿Implementar la selección desde un calendario?
+  - ¿Implementar la selección desde un calendario? --> trabajando en ello
   - ¿Que el usuario escriba la fecha, en lugar de escogerla de una dropdown list?
   - Permitir que se escogan días inexistentes (29 de febrero de 2001), sin necesidad de cambiar el año primero a un año bisiesto.
 
