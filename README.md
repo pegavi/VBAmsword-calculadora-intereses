@@ -11,3 +11,9 @@ Calculadora de intereses para MSWord, crea un tabla con distintos intereses lega
   - Altura de las celdas (con o sin espacio)
   - Negrita/itálica de los títulos de las columnas
   - Disposición del texto (centrado o izquierda)
+ 
+- Guardar los datos de los intereses en un archivo externo (.csv?)
+  - Que se lean desde una API?
+  - Que se puedan crear/consultar/modificar desde la propia aplicación
+
+- Permitir tipos de interés personalizados
