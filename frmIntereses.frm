@@ -1,10 +1,10 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmIntereses 
    Caption         =   "Cálculo de Intereses"
-   ClientHeight    =   3885
+   ClientHeight    =   3890
    ClientLeft      =   120
-   ClientTop       =   465
-   ClientWidth     =   4185
+   ClientTop       =   470
+   ClientWidth     =   4190
    OleObjectBlob   =   "frmIntereses.frx":0000
    StartUpPosition =   1  'Centrar en propietario
 End
@@ -13,9 +13,6 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
-
-
-
 Option Explicit
 
 Dim Intereses(3, 1) As String
@@ -32,7 +29,18 @@ Dim question As Integer
 
 question = vbOK
 
-parse = Split(Intereses(Me.cmbTipo.ListIndex, 1), ":")
+
+
+If Me.cbxTipo.Text <> "Personalizado" Then
+
+    parse = Split(Intereses(Me.cbxTipo.ListIndex, 1), ":")
+    
+Else
+
+    parse = Split(Me.cbxDiaInicio.Text + "/" + Me.cbxMesInicio.Text + "/" + Me.cbxAnyInicio.Text + ":" + CStr(CDbl(Me.txtTipoPersonal)) + ":" + Me.cbxDiaFin.Text + "/" + Me.cbxMesFin.Text + "/" + Me.cbxAnyFin.Text, ":")
+
+End If
+
 fechaInicial = parse(0)
 fechaFinal = parse(UBound(parse))
 
@@ -80,11 +88,59 @@ Private Sub cmbCancelar_Click()
 Unload Me
 
 End Sub
+Private Sub cbxTipo_Change()
+Dim cambio As Integer
+Dim i As Integer
+
+If Me.cbxTipo.Text <> "Personalizado" Then
+
+    Me.lblInicio.Top = 54
+    Me.cbxDiaInicio.Top = 72
+    Me.cbxMesInicio.Top = 72
+    Me.cbxAnyInicio.Top = 72
+    Me.lblFin.Top = 96
+    Me.cbxDiaFin.Top = 114
+    Me.cbxMesFin.Top = 114
+    Me.cbxAnyFin.Top = 114
+    Me.cmbFinHoy.Top = 114
+    Me.cmbCalcular.Top = 138
+    Me.cmbCancelar.Top = 138
+    Me.chbFinal.Top = 168
+    
+    Me.chbFinal.Visible = True
+    Me.txtTipoPersonal.Visible = False
+    Me.lblIntPersonal.Visible = False
+    Me.chbFinal.Enabled = True
+    Me.lblPercent.Visible = False
+    
+    Me.Height = 222
+
+Else
+
+    For i = 0 To Me.Controls.Count - 1
+    
+        If Me.Controls(i).Tag <> "superior" Then
+        
+            Me.Controls(i).Top = Me.Controls(i).Top + 30
+        
+        End If
+        
+    Next i
+    
+    Me.Height = Me.Height + 10
+    
+    Me.chbFinal.Visible = False
+    Me.txtTipoPersonal.Visible = True
+    Me.lblIntPersonal.Visible = True
+    Me.lblPercent.Visible = True
+    
+    
+End If
 
 
-Private Sub txtCapital_Change()
 
 End Sub
+
 
 Private Sub txtCapital_KeyPress(ByVal KeyAscii As MSForms.ReturnInteger)
 
@@ -94,7 +150,7 @@ Private Sub txtCapital_KeyPress(ByVal KeyAscii As MSForms.ReturnInteger)
     ' Permitir números (0-9), punto (.), coma (,) y tecla de retroceso
     If (KeyAscii >= 48 And KeyAscii <= 57) Or KeyAscii = 46 Or KeyAscii = 44 Or KeyAscii = 8 Then
         ' Obtener el texto actual del cuadro de texto
-        texto = Me.txtCapital.text
+        texto = Me.txtCapital.Text
 
         ' Insertar el carácter en la posición actual del cursor
         If KeyAscii <> 8 Then ' Si no es la tecla de retroceso
@@ -126,8 +182,51 @@ Private Sub txtCapital_KeyPress(ByVal KeyAscii As MSForms.ReturnInteger)
 
 End Sub
 
+Private Sub txtTipoPersonal_KeyPress(ByVal KeyAscii As MSForms.ReturnInteger)
+
+    Dim texto As String
+    Dim posicion As Integer
+
+    ' Permitir números (0-9), punto (.), coma (,) y tecla de retroceso
+    If (KeyAscii >= 48 And KeyAscii <= 57) Or KeyAscii = 46 Or KeyAscii = 44 Or KeyAscii = 8 Then
+        ' Obtener el texto actual del cuadro de texto
+        texto = Me.txtTipoPersonal.Text
+
+        ' Insertar el carácter en la posición actual del cursor
+        If KeyAscii <> 8 Then ' Si no es la tecla de retroceso
+            posicion = Me.txtTipoPersonal.SelStart + 1
+            texto = Left(texto, Me.txtTipoPersonal.SelStart) & Chr(KeyAscii) & Mid(texto, Me.txtTipoPersonal.SelStart + 1)
+        Else
+            If Me.txtTipoPersonal.SelLength > 0 Then
+                texto = Left(texto, Me.txtTipoPersonal.SelStart) & Mid(texto, Me.txtTipoPersonal.SelStart + Me.txtTipoPersonal.SelLength + 1)
+            ElseIf Me.txtTipoPersonal.SelStart > 0 Then
+                texto = Left(texto, Me.txtTipoPersonal.SelStart - 1) & Mid(texto, Me.txtTipoPersonal.SelStart + 1)
+            End If
+        End If
+
+        ' Reemplazar coma (,) por punto (.) para validación
+       ' texto = Replace(texto, ",", ".")
+
+        ' Validar si el resultado es un número válido
+        If Not IsNumeric(texto) Then
+            'MsgBox "Por favor, introduzca un número válido.", vbExclamation
+            KeyAscii = 0 ' Cancelar la tecla
+        End If
+    Else
+        'MsgBox "Por favor, introduzca solo números, punto o coma.", vbExclamation
+        KeyAscii = 0 ' Cancelar la tecla
+    End If
+
+
+
+
+End Sub
+
 Private Sub UserForm_Activate()
 
+' Medidas del Userform
+' Height = 222.5
+'Width = 220.5
 
 Dim i As Integer
 Dim anno As Integer
@@ -148,13 +247,15 @@ For i = 0 To UBound(Intereses)
 
     If Intereses(i, 0) <> "" Then
 
-        Me.cmbTipo.AddItem (Intereses(i, 0))
+        Me.cbxTipo.AddItem (Intereses(i, 0))
 
     End If
 
 Next i
 
-Me.cmbTipo = Intereses(0, 0)
+Me.cbxTipo.AddItem ("Personalizado")
+
+Me.cbxTipo = Intereses(0, 0)
 
 
 For i = 1 To 31
@@ -181,9 +282,9 @@ For i = 0 To year(Now) - CInt(Mid(Intereses(0, 1), 7, 4))
     
 Next i
 
-If IsNumeric(Selection.Range.text) Then
+If IsNumeric(Selection.Range.Text) Then
 
-    Me.txtCapital.Value = Selection.Range.text
+    Me.txtCapital.Value = Selection.Range.Text
 
 End If
 
