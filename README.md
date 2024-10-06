@@ -16,4 +16,4 @@ Calculadora de intereses para MSWord, crea un tabla con distintos intereses lega
   - Que se lean desde una API?
   - Que se puedan crear/consultar/modificar desde la propia aplicación
 
-- Permitir tipos de interés personalizados
+- ~~Permitir tipos de interés personalizados~~ Hecho
