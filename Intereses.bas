@@ -332,7 +332,7 @@ For i = 0 To totalPeriodos
                 '.Dias = DateDiff("d", .fechaInicio, .fechaFinal) + 1
         End If
 
-        .interesesPeriodo = capital * .tipo * .dias / (DateDiff("d", DateSerial(year(.fechaInicioPeriodo), 1, 1), DateSerial(year(.fechaInicioPeriodo), 12, 31)) + 1) / 100
+        .interesesPeriodo = capital * .tipo * .dias / (DateDiff("d", DateSerial(Year(.fechaInicioPeriodo), 1, 1), DateSerial(Year(.fechaInicioPeriodo), 12, 31)) + 1) / 100
 
     End With
 
@@ -344,13 +344,4 @@ CalcularInteresesPorPeriodos = periodos
 
 End Function
 
-Sub test()
-Dim Intereses As String
-Dim datos() As String
-Dim a() As PeriodosDeIntereses
 
-Intereses = "01/01/1995:9:01/01/1996:9:01/01/1997:7,5:01/01/1998:5,5:01/01/1999:4,25:01/01/2000:4,25:01/01/2001:5,5:01/01/2002:4,25:01/01/2003:4,25:01/01/2004:3,75:01/01/2005:4:01/01/2006:4:01/01/2007:5:01/01/2008:5,5:01/01/2009:5,5:01/04/2009:4:01/01/2010:4:01/01/2011:4:01/01/2012:4:01/01/2013:4:01/01/2014:4:01/01/2015:3,5:01/01/2016:3:01/01/2017:3:01/01/2018:3:01/01/2019:3:01/01/2020:3:01/01/2021:3:01/01/2022:3:01/01/2023:3,25:01/01/2024:3,25:31/12/2024"
-datos = Split(Intereses, ":")
-a = CalcularInteresesPorPeriodos(#1/1/2001#, #1/1/2003#, 10000, datos)
-
-End Sub
