@@ -14,42 +14,6 @@ Private Type PeriodosDeIntereses
     
 End Type
 
-'Sub test()
-'
-'Dim myFile As String, text As String, textline As String, posLat As Integer, posLong As Integer
-'
-'Dim rutaDirectorio As String
-'
-'rutaDirectorio = Left(ThisDocument.FullName, InStrRev(ThisDocument.FullName, "\"))
-'
-'myFile = rutaDirectorio & "hola.txt"
-'
-'Open myFile For Input As #1
-'
-'Do Until EOF(1)
-'    Line Input #1, textline
-'    text = text & textline
-'Loop
-'
-'Close #1
-'
-'MsgBox text
-'
-'End Sub
-
-
-'Sub test()
-'
-'Dim parse() As String
-'
-'parse = Split("1/1/2010:4:1/1/2011:4:1/1/2012:4:1/1/2013:4:1/1/2014:4:1/1/2015:3,5:1/1/2016:3:1/1/2017:3:1/1/2018:3:1/1/2019:3:1/1/2020:3:1/1/2021:3:1/1/2022:3:1/1/2023:3,25:31/12/2023", ":")
-'
-'Call insertar(DateSerial(2024, 2, 2), DateSerial(2024, 7, 9), CDbl(1000), parse, False)
-'
-'
-'
-'End Sub
-
 Sub CalcularIntereses()
 
     ' Validación de selección
