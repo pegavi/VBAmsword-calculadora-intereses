@@ -80,7 +80,7 @@ Function IsValidSelection() As Boolean
 End Function
 
 'Sirve para evitar que se fusione con una tabla anterior, si la selección está justo después de una tabla
-Sub AdjustSelection()
+Private Sub AdjustSelection()
     Selection.MoveLeft (1)
     If Selection.Information(wdWithInTable) Then
         Selection.MoveRight (1)
