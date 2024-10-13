@@ -13,6 +13,7 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
+
 Option Explicit
 
 Dim Intereses() As String
@@ -232,9 +233,6 @@ config = datosGuardados(0)
 
 ReDim Intereses(1 To UBound(datosGuardados))
 
-MsgBox (UBound(Intereses))
-
-MsgBox config
 For i = 1 To UBound(Intereses)
     Intereses(i) = datosGuardados(i)
 Next i
