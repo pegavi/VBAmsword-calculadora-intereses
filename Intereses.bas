@@ -1,9 +1,9 @@
 Attribute VB_Name = "Intereses"
 Option Explicit
 
-Const MSG_SEL_MAIN_SECTION As String = "La selecciÛn debe estar en la secciÛn principal del documento (no notas al pie, encabezados...)"
-Const MSG_SEL_NO_TABLE As String = "La selecciÛn no puede ser una tabla"
-Const MSG_SEL_INVALID As String = "SelecciÛn no v·lida. Selecciona el lugar donde quieres que se introduzca la tabla con el c·lculo de intereses."
+Const MSG_SEL_MAIN_SECTION As String = "La selecci√≥n debe estar en la secci√≥n principal del documento (no notas al pie, encabezados...)"
+Const MSG_SEL_NO_TABLE As String = "La selecci√≥n no puede ser una tabla"
+Const MSG_SEL_INVALID As String = "Selecci√≥n no v√°lida. Selecciona el lugar donde quieres que se introduzca la tabla con el c√°lculo de intereses."
 
 Private Type PeriodosDeIntereses
     fechaInicioPeriodo As Date
@@ -14,48 +14,12 @@ Private Type PeriodosDeIntereses
     
 End Type
 
-'Sub test()
-'
-'Dim myFile As String, text As String, textline As String, posLat As Integer, posLong As Integer
-'
-'Dim rutaDirectorio As String
-'
-'rutaDirectorio = Left(ThisDocument.FullName, InStrRev(ThisDocument.FullName, "\"))
-'
-'myFile = rutaDirectorio & "hola.txt"
-'
-'Open myFile For Input As #1
-'
-'Do Until EOF(1)
-'    Line Input #1, textline
-'    text = text & textline
-'Loop
-'
-'Close #1
-'
-'MsgBox text
-'
-'End Sub
-
-
-'Sub test()
-'
-'Dim parse() As String
-'
-'parse = Split("1/1/2010:4:1/1/2011:4:1/1/2012:4:1/1/2013:4:1/1/2014:4:1/1/2015:3,5:1/1/2016:3:1/1/2017:3:1/1/2018:3:1/1/2019:3:1/1/2020:3:1/1/2021:3:1/1/2022:3:1/1/2023:3,25:31/12/2023", ":")
-'
-'Call insertar(DateSerial(2024, 2, 2), DateSerial(2024, 7, 9), CDbl(1000), parse, False)
-'
-'
-'
-'End Sub
-
 Sub CalcularIntereses()
 
-    ' ValidaciÛn de selecciÛn
+    ' Validaci√≥n de selecci√≥n
     If Not IsValidSelection() Then Exit Sub
     
-    ' Ajustes para evitar que se fusione con una tabla anterior, si la selecciÛn est· justo despuÈs de una tabla
+    ' Ajustes para evitar que se fusione con una tabla anterior, si la selecci√≥n est√° justo despu√©s de una tabla
     Call AdjustSelection
     
     ' Mostrar formulario de intereses
@@ -63,7 +27,7 @@ Sub CalcularIntereses()
 
 End Sub
 
-' FunciÛn para validar si la selecciÛn est· en la Main Story, fuera de una tabla, y si hay algo seleccionado, para evitar errores.
+' Funci√≥n para validar si la selecci√≥n est√° en la Main Story, fuera de una tabla, y si hay algo seleccionado, para evitar errores.
 Function IsValidSelection() As Boolean
     If Selection.StoryType <> wdMainTextStory Then
         MsgBox MSG_SEL_MAIN_SECTION
@@ -79,7 +43,7 @@ Function IsValidSelection() As Boolean
     End If
 End Function
 
-'Sirve para evitar que se fusione con una tabla anterior, si la selecciÛn est· justo despuÈs de una tabla
+'Sirve para evitar que se fusione con una tabla anterior, si la selecci√≥n est√° justo despu√©s de una tabla
 Private Sub AdjustSelection()
     Selection.MoveLeft (1)
     If Selection.Information(wdWithInTable) Then
@@ -119,7 +83,7 @@ If dividirPorPeriodos Then
     tbl.Rows(1).Cells(1).Range.text = "Capital"
     tbl.Rows(1).Cells(2).Range.text = "Desde"
     tbl.Rows(1).Cells(3).Range.text = "Hasta"
-    tbl.Rows(1).Cells(4).Range.text = "DÌas"
+    tbl.Rows(1).Cells(4).Range.text = "D√≠as"
     tbl.Rows(1).Cells(5).Range.text = "Tipo"
     tbl.Rows(1).Cells(6).Range.text = "Total"
     tbl.Rows(1).Range.Font.Italic = True
@@ -159,7 +123,7 @@ Set tbl = rng.Tables.Add(rng, 2, 5)
     tbl.Rows(1).Cells(1).Range.text = "Capital"
     tbl.Rows(1).Cells(2).Range.text = "Desde"
     tbl.Rows(1).Cells(3).Range.text = "Hasta"
-    tbl.Rows(1).Cells(4).Range.text = "DÌas"
+    tbl.Rows(1).Cells(4).Range.text = "D√≠as"
     tbl.Rows(1).Cells(5).Range.text = "Total"
     tbl.Rows(1).Range.Font.Italic = True
     
@@ -179,10 +143,10 @@ End Sub
 
 Function CalcularInteresesPorPeriodos(fechaInicio As Date, fechaFin As Date, capital As Double, datos() As String) As PeriodosDeIntereses()
 
-'Variable type privado donde se almacenar· la informaciÛn de rangos de fechas, sus tipos de interÈs, los dÌas que contiene y los intereses devengados para ese periodo
+'Variable type privado donde se almacenar√° la informaci√≥n de rangos de fechas, sus tipos de inter√©s, los d√≠as que contiene y los intereses devengados para ese periodo
 Dim periodos() As PeriodosDeIntereses
-'Variables para guardar la primera y la ˙ltima fecha para la que hay informaciÛn disponible
-Dim tamaÒoDatos As Integer
+'Variables para guardar la primera y la √∫ltima fecha para la que hay informaci√≥n disponible
+Dim tama√±oDatos As Integer
 Dim fechaFinDatos As Date
 Dim fechaInicioDatos As Date
 Dim indexPrimerPeriodo As Integer
@@ -191,8 +155,8 @@ Dim totalPeriodos As Integer
 Dim i As Integer
 Dim indice As Integer
 
-tamaÒoDatos = UBound(datos)
-fechaFinDatos = datos(tamaÒoDatos)
+tama√±oDatos = UBound(datos)
+fechaFinDatos = datos(tama√±oDatos)
 
 indexPrimerPeriodo = LBound(datos)
 fechaInicioDatos = datos(indexPrimerPeriodo)
@@ -201,7 +165,7 @@ fechaInicioDatos = datos(indexPrimerPeriodo)
 
 If fechaInicio > fechaFin Then
 
-    MsgBox "La fecha de inicio (" & fechaInicio & ") no puede ser superior a la fecha de fin del c·lculo (" & fechaFin & ")."
+    MsgBox "La fecha de inicio (" & fechaInicio & ") no puede ser superior a la fecha de fin del c√°lculo (" & fechaFin & ")."
 
     Exit Function
 
@@ -218,16 +182,16 @@ If CDate(fechaInicioDatos) > fechaInicio Then
 End If
 
  
-'Para no cargar en periodos() todos los periodos disponibles, incluso los que no devengan intereses por estar fuera del rango de fechas utilizado, calculamos quÈ Ìndice de parse() contiene el primer y el ˙ltimo periodo con intereses
-Do While CDate(datos(indexPrimerPeriodo)) <= fechaInicio And indexPrimerPeriodo < tamaÒoDatos
-    indexPrimerPeriodo = indexPrimerPeriodo + 2 ' avanzar de dos en dos, ya que parse() est· organizado en pares fecha/tipo
+'Para no cargar en periodos() todos los periodos disponibles, incluso los que no devengan intereses por estar fuera del rango de fechas utilizado, calculamos qu√© √≠ndice de parse() contiene el primer y el √∫ltimo periodo con intereses
+Do While CDate(datos(indexPrimerPeriodo)) <= fechaInicio And indexPrimerPeriodo < tama√±oDatos
+    indexPrimerPeriodo = indexPrimerPeriodo + 2 ' avanzar de dos en dos, ya que parse() est√° organizado en pares fecha/tipo
 Loop
 
 indexPrimerPeriodo = indexPrimerPeriodo - 2
 
 indexUltimoPeriodo = indexPrimerPeriodo
-Do While CDate(datos(indexUltimoPeriodo)) <= fechaFin And indexUltimoPeriodo < tamaÒoDatos
-    indexUltimoPeriodo = indexUltimoPeriodo + 2 ' avanzar de dos en dos, ya que parse() est· organizado en pares fecha/tipo
+Do While CDate(datos(indexUltimoPeriodo)) <= fechaFin And indexUltimoPeriodo < tama√±oDatos
+    indexUltimoPeriodo = indexUltimoPeriodo + 2 ' avanzar de dos en dos, ya que parse() est√° organizado en pares fecha/tipo
 Loop
 
 indexUltimoPeriodo = indexUltimoPeriodo - 2
@@ -236,7 +200,7 @@ indexUltimoPeriodo = indexUltimoPeriodo - 2
 
 totalPeriodos = (indexUltimoPeriodo - indexPrimerPeriodo) / 2
 
-' Si la fecha inicial es inferior al lÌmite, pero la fecha final es superior al lÌmite, hay que aÒadir un periodo adicional, que ir· calculado al ˙ltimo tipo disponible, pero separado.
+' Si la fecha inicial es inferior al l√≠mite, pero la fecha final es superior al l√≠mite, hay que a√±adir un periodo adicional, que ir√° calculado al √∫ltimo tipo disponible, pero separado.
 If fechaFin > fechaFinDatos And fechaInicio < fechaFinDatos Then
     totalPeriodos = totalPeriodos + 1
 End If
@@ -245,8 +209,8 @@ ReDim periodos(totalPeriodos)
 
 
 ' recorre el array "parse", tomando los elementos pares (indice = 0, 2, 4...), que se corresponden con las fechas, y los asigna al array "periodos.fechaInicioPeriodo".
-' a continuaciÛn toma los elementos impares (indice+1), correspondientes a los tipos de interÈs, y los asigna al array "periodos.tipo".
-' acaba en "tamaÒoDatos - 1" para no incluir la fecha final (fin del ˙ltimo periodo sobre el que hay datos), que va en una variable aparte
+' a continuaci√≥n toma los elementos impares (indice+1), correspondientes a los tipos de inter√©s, y los asigna al array "periodos.tipo".
+' acaba en "tama√±oDatos - 1" para no incluir la fecha final (fin del √∫ltimo periodo sobre el que hay datos), que va en una variable aparte
 
 i = 0
 
@@ -254,7 +218,7 @@ If fechaInicio > fechaFinDatos And fechaInicio > fechaFinDatos Then
 
     With periodos(i)
         .fechaInicioPeriodo = fechaInicio
-        .tipo = datos(tamaÒoDatos - 1)
+        .tipo = datos(tama√±oDatos - 1)
         .fechaFinPeriodo = fechaFin
         
     End With
@@ -268,7 +232,7 @@ For indice = indexPrimerPeriodo To indexUltimoPeriodo Step 2
         .fechaInicioPeriodo = datos(indice)
         .tipo = datos(indice + 1)
         
-        If (indice + 2) < tamaÒoDatos Then
+        If (indice + 2) < tama√±oDatos Then
 
             .fechaFinPeriodo = CDate(datos(indice + 2)) - 1
         Else
@@ -292,7 +256,7 @@ If i = totalPeriodos Then
 
     With periodos(i)
         .fechaInicioPeriodo = fechaFinDatos + 1
-        .tipo = datos(tamaÒoDatos - 1)
+        .tipo = datos(tama√±oDatos - 1)
         
         .fechaFinPeriodo = fechaFin
         
