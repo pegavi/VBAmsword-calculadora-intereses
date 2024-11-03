@@ -14,6 +14,7 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 
+
 Option Explicit
 
 Dim Intereses() As String
@@ -245,7 +246,7 @@ Next i
 Dim anno As Integer
 
 
-For i = 1 To UBound(Intereses) Step 2
+For i = 1 To UBound(Intereses)
 
     pos = InStr(Intereses(i), ":")
 
