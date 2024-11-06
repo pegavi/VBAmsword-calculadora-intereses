@@ -2,6 +2,10 @@
 Calculadora de intereses para MSWord, crea un tabla con distintos intereses legales (España) a partir de una cantidad en euros.
 
 ## Algunas mejoras planeadas:
+- Dar la opción de imprimir el cálculo de la cifra final de intereses, sin tabla, sólo el resultado
+  
+- Dar la opción de añadir al final no sólo el total de intereses, sino también intereses + capital
+
 - Modificar la entrada de datos de fecha.
   - ¿Implementar la selección desde un calendario? --> trabajando en ello
   - ¿Que el usuario escriba la fecha, en lugar de escogerla de una dropdown list?
