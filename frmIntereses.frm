@@ -4,7 +4,7 @@ Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmIntereses
    ClientHeight    =   3885
    ClientLeft      =   120
    ClientTop       =   465
-   ClientWidth     =   4185
+   ClientWidth     =   6870
    OleObjectBlob   =   "frmIntereses.frx":0000
    StartUpPosition =   1  'Centrar en propietario
 End
@@ -13,6 +13,7 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
+
 
 
 Option Explicit
@@ -131,6 +132,11 @@ Else
     Me.Height = Me.Height + 10
     
     Me.chbFinal.Visible = False
+    
+    Me.lblIntPersonal.Left = 12
+    Me.txtTipoPersonal.Left = 42
+    Me.lblPercent.Left = 78
+    
     Me.txtTipoPersonal.Visible = True
     Me.lblIntPersonal.Visible = True
     Me.lblPercent.Visible = True
@@ -224,10 +230,18 @@ Private Sub txtTipoPersonal_KeyPress(ByVal KeyAscii As MSForms.ReturnInteger)
 End Sub
 
 Private Sub UserForm_Activate()
+
+' Medidas del Userform
+' Height = 222.5
+' Width = 220.5
+
 Dim i As Integer
 Dim datosGuardados() As String
 Dim config As String
 Dim pos As Integer
+
+Me.Height = 222.5
+Me.Width = 220.5
 
 datosGuardados = Split(LeerStringDesdeTxt, ";")
 config = datosGuardados(0)
@@ -237,10 +251,6 @@ ReDim Intereses(1 To UBound(datosGuardados))
 For i = 1 To UBound(Intereses)
     Intereses(i) = datosGuardados(i)
 Next i
-
-' Medidas del Userform
-' Height = 222.5
-'Width = 220.5
 
 
 Dim anno As Integer
