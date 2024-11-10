@@ -2,6 +2,8 @@
 Calculadora de intereses para MSWord, crea un tabla con distintos intereses legales (España) a partir de una cantidad en euros.
 
 ## Algunas mejoras planeadas:
+- Crear una guia de instalación
+  
 - Dar la opción de imprimir el cálculo de la cifra final de intereses, sin tabla, sólo el resultado
   
 - Dar la opción de añadir al final no sólo el total de intereses, sino también intereses + capital
