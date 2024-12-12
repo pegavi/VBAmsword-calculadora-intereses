@@ -21,5 +21,7 @@ Calculadora de intereses para MSWord, crea un tabla con distintos intereses lega
 - Guardar los datos de los intereses en un archivo externo (.csv?)
   - Que se lean desde una API?
   - Que se puedan crear/consultar/modificar desde la propia aplicación
+ 
+- Añadir la suma total de días también en la versión desglosada
 
 - ~~Permitir tipos de interés personalizados~~ Hecho
